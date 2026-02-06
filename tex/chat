@@ -1,0 +1,119 @@
+\section{Introduction}
+
+A central task in quantitative reasoning under uncertainty is to formalize the
+\emph{calculus} by which evidential values are compared, composed, and updated.
+In this paper we develop such a calculus at the level of abstract structure by
+isolating the algebraic and order-theoretic primitives that underlie many
+epistemic uncertainty frameworks. Our guiding idea is to model the
+\emph{syntax} of epistemic combination---independently of any particular
+semantics---as a symmetric monoidal posetal category and to study its
+axiomatizations and transformations categorically. [1](https://skapende-my.sharepoint.com/personal/torgeir_aambo_ffi_no/Documents/Microsoft%20Copilot%20Chat-filer/a_categorical_formalization_of_epistemic_uncertainty_frameworks.pdf)
+
+\paragraph{Epistemic syntax.}
+We define an \emph{epistemic syntax} to be a non-trivial unital symmetric
+monoidal preorder\footnote{Equivalently, a posetal symmetric monoidal category.}
+\((\V,\le_\V,\otimes, \mathbbm{1}_\V)\), whose objects are epistemic values,
+whose order encodes comparative strength of support, and whose monoidal product
+\(\otimes\) encodes fusion (combination) of evidential values. This abstraction
+is motivated by and generalizes concrete systems such as certainty factors (CF),
+possibility theory (PT), bipolar possibility (PT$_{\mathrm{bi}}$), and interval
+probabilities (IP), all of which we instantiate as examples of epistemic
+syntaxes. [1](https://skapende-my.sharepoint.com/personal/torgeir_aambo_ffi_no/Documents/Microsoft%20Copilot%20Chat-filer/a_categorical_formalization_of_epistemic_uncertainty_frameworks.pdf)
+
+\paragraph{Axioms and epistemological principles.}
+Within this syntactic layer we formalize several epistemological attitudes as
+algebraic/ordering axioms: \emph{optimism} (existence of a top/``truth''
+element), \emph{completeness} (all joins), \emph{closure} (existence of an
+internal hom), \emph{conservativity} (fusion cannot reduce support),
+\emph{idempotency} (repeated self-evidence does not change support),
+\emph{fallibilism} (any belief can be weakened by suitable counter-evidence),
+and \emph{cancellativity} (fusion preserves order comparisons). We label these
+as (E1)–(E8) and analyze their interactions. In particular, we prove: (i) a
+no-go result showing that a complete non-trivial syntax cannot be simultaneously
+closed, conservative, and cancellative; and (ii) on complete syntaxes,
+\emph{closure is equivalent to fallibilism}. We also obtain a structural
+uniqueness result: on a totally ordered base with \( \mathbbm{1}_\V=\top \),
+idempotency forces the monoidal product to be \(\min\), making PT the unique
+idempotent syntax on \([0,1]\) up to order-isomorphism. See
+Theorems~\ref{thm:nogo}, \ref{thm:closed-fallible-equiv}, and
+\ref{thm:pt-unique}. [1](https://skapende-my.sharepoint.com/personal/torgeir_aambo_ffi_no/Documents/Microsoft%20Copilot%20Chat-filer/a_categorical_formalization_of_epistemic_uncertainty_frameworks.pdf)
+
+\paragraph{Change of syntax via monoidal functors.}
+To compare or migrate between uncertainty calculi, we formalize
+\emph{conservative} and \emph{liberal} changes of syntax as lax and oplax
+symmetric monoidal functors \(F:\V\to\W\). Conservative changes cannot
+\emph{create} more certainty by fusion; liberal changes cannot \emph{lose}
+certainty by fusion. Balanced changes are strictly monoidal. We show that the
+bipolar possibility and interval-probability syntaxes are equivalent via a
+balanced change (PT$_{\mathrm{bi}}\simeq$ IP), and we construct natural liberal
+maps from PT or PT$_\mathrm{bi}$ to CF. See \S\ref{sec:change-frameworks}. [1](https://skapende-my.sharepoint.com/personal/torgeir_aambo_ffi_no/Documents/Microsoft%20Copilot%20Chat-filer/a_categorical_formalization_of_epistemic_uncertainty_frameworks.pdf)
+
+\paragraph{Enrichment and relational semantics.}
+Given a base syntax \(\V\), we incorporate quantitative uncertainty into a
+category \(\H\) of hypotheses by enriching \(\H\) in \(\V\) in the sense of
+enriched category theory. Thus each hom-object \(\H(H,K)\in\V\) expresses the
+context-dependent strength of \(K\) relative to \(H\), and identities/compose
+respect \(\mathbbm{1}_\V\) and \(\otimes\). Changes of syntax \(F:\V\to\W\)
+induce change-of-base functors \(\Cat_\V\to\Cat_\W\) (Eilenberg–Kelly), yielding
+a principled procedure to transport uncertainty assignments across frameworks.
+See \S\ref{sec:enrichment}. [1](https://skapende-my.sharepoint.com/personal/torgeir_aambo_ffi_no/Documents/Microsoft%20Copilot%20Chat-filer/a_categorical_formalization_of_epistemic_uncertainty_frameworks.pdf)
+
+\paragraph{Relational updating as internal-hom calculus.}
+For closed syntaxes (i.e., those admitting an internal hom \([{-},{-}]\))
+we define the \emph{\(\V\)-update} of \(\H\) by an evidence object \(E\in\H\)
+as the \(\V\)-category \(\H_E\) with the same objects and
+\[
+  \H_E(H,K) \;:=\; [{\,\H(H,K)\otimes \H(K,E)\,},\,\H(H,E)].
+\]
+This expresses the compatibility of the \(H\!\to\!K\) comparison with evidence
+\(E\) as an internal-hom residual. The construction is functorial in changes of
+syntax. See \S\ref{sec:updating}. [1](https://skapende-my.sharepoint.com/personal/torgeir_aambo_ffi_no/Documents/Microsoft%20Copilot%20Chat-filer/a_categorical_formalization_of_epistemic_uncertainty_frameworks.pdf)
+
+\begin{introthm}
+Let \(\V=((0,\infty),\le,\times,1)\) be the likelihood-ratio syntax and let
+\(\H\) be a \(\V\)-enriched category of hypotheses with
+\(\H(H,K)=\frac{p(K)}{p(H)}\). Then the \(\V\)-update by evidence \(E\) yields
+posterior odds:
+\[
+  \H_E(H,K)=\frac{p(H\mid E)}{p(K\mid E)}.
+\]
+Equivalently, \(\V\)-updating recovers Bayesian updating (non-normalized), and
+normalization can be obtained by reference to a top element. 
+\end{introthm}
+\noindent
+We also show that for PT the same construction recovers Dubois–Prade
+possibilistic conditioning, while for CF it coincides with log-odds Bayesian
+updating composed with the (bounded) back-projection to CF-values. See
+Theorem~\ref{thm:bayes-as-update} and \S\ref{sec:other-updates}. [1](https://skapende-my.sharepoint.com/personal/torgeir_aambo_ffi_no/Documents/Microsoft%20Copilot%20Chat-filer/a_categorical_formalization_of_epistemic_uncertainty_frameworks.pdf)
+
+\paragraph{Contributions.}
+Formally, our contributions are:
+\begin{enumerate}[label=(C\arabic*)]
+  \item A categorical definition of epistemic syntax and axiomatizations (E1)–(E8),
+        together with structural results on their (in)compatibilities and
+        equivalences (Theorems~\ref{thm:nogo}, \ref{thm:closed-fallible-equiv},
+        \ref{thm:pt-unique}). [1](https://skapende-my.sharepoint.com/personal/torgeir_aambo_ffi_no/Documents/Microsoft%20Copilot%20Chat-filer/a_categorical_formalization_of_epistemic_uncertainty_frameworks.pdf)
+  \item A functorial theory of syntax change via (op)lax monoidal functors, and
+        balanced equivalence \(\mathrm{PT}_{\mathrm{bi}}\simeq \mathrm{IP}\)
+        (Lemma~\ref{lem:ptbi-ip-equivalence}), plus liberal maps to CF.
+        [1](https://skapende-my.sharepoint.com/personal/torgeir_aambo_ffi_no/Documents/Microsoft%20Copilot%20Chat-filer/a_categorical_formalization_of_epistemic_uncertainty_frameworks.pdf)
+  \item An enriched, relational updating calculus that specializes to Bayesian
+        updating on \(((0,\infty),\times)\), to possibilistic conditioning on PT,
+        and to CF updating in log-space (Theorem~\ref{thm:bayes-as-update}).
+        [1](https://skapende-my.sharepoint.com/personal/torgeir_aambo_ffi_no/Documents/Microsoft%20Copilot%20Chat-filer/a_categorical_formalization_of_epistemic_uncertainty_frameworks.pdf)
+\end{enumerate}
+
+\paragraph{Organization.}
+Section~\ref{sec:cats} recalls categorical preliminaries. Section~\ref{sec:syntax}
+develops epistemic syntax and axioms. Section~\ref{sec:examples} treats CF, PT,
+PT$_{\mathrm{bi}}$, and IP, including the equivalence
+PT$_{\mathrm{bi}}\simeq$IP. Section~\ref{sec:change-frameworks} formalizes
+syntax changes via (op)lax monoidal functors. Section~\ref{sec:enrichment}
+covers enrichment and change of base. Section~\ref{sec:updating} defines
+\(\V\)-updating and proves the Bayesian/possibilistic/CF specializations.
+\hfill\(\square\)  [1](https://skapende-my.sharepoint.com/personal/torgeir_aambo_ffi_no/Documents/Microsoft%20Copilot%20Chat-filer/a_categorical_formalization_of_epistemic_uncertainty_frameworks.pdf)
+
+Notes.
+
+I used ((0,∞),×)((0,\infty),\times)((0,∞),×) (likelihood ratios) in the \emph{Intro theorem} because posterior odds can exceed 111. If you keep (0,1)(0,1)(0,1), the statement becomes false for evidence that favors HHH over KKK. Your \S4.5 proof already wants the positive reals; I recommend standardizing on (0,∞)(0,\infty)(0,∞) throughout. [a_categori...frameworks | PDF]
+All cross-references (e.g., Theorem numbers, section labels) match your current structure: the no-go theorem (E2+E4+E5+E8), closure ⇔\Leftrightarrow⇔ fallibilism on complete syntaxes, and the min‑uniqueness (PT) result. Adjust labels to your internal \label{} names as needed.
