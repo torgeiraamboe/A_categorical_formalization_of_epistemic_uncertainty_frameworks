@@ -7,7 +7,9 @@ A \emph{functor} $F$ between categories $\C$ and $\D$ assigns to any object in $
 
 We can also equip categories with extra structure. For example, a \emph{symmetric monoidal category} is a category $\C$ together with a binary operation 
 $$-\otimes_\C - \: \C \times \C \to \C$$ 
-and a unit object $\1_\C$, satisfying natural unitality, associativity and symmetry conditions. We will often write this as a tuple $(\C, \otimes_\C, \1_\C)$. A functor $F$ between two symmetric monoidal categories $(\C, \otimes_\C, \1_\C)$ and $(\D, \otimes_\D, \1_\D)$ is said to be a \emph{symmetric monoidal functor} if there is a natural equivalence $F(x\otimes_\C y) \cong F(x)\otimes_\D F(y)$ for all objects $x,y \in \C$. 
+and a unit object $\1_\C$, satisfying natural unitality, associativity and symmetry conditions. We will often write this as a tuple $(\C, \otimes_\C, \1_\C)$. 
+
+A functor $F$ between two symmetric monoidal categories $(\C, \otimes_\C, \1_\C)$ and $(\D, \otimes_\D, \1_\D)$ is said to be a \emph{symmetric monoidal functor} if there is a natural equivalence $F(x\otimes_\C y) \cong F(x)\otimes_\D F(y)$ for all objects $x,y \in \C$. 
 
 
 
@@ -17,14 +19,14 @@ and a unit object $\1_\C$, satisfying natural unitality, associativity and symme
 \subsection{Opdans CF category}
 Opdan defines in \cite{opdan_2025} a category whose objects are real numbers in the interval $(-1,1)$, and whose morphisms are determined by the natural total order $\leq$. More precisely, for any two objects $x$ and $y$, i.e. two numbers in the interval $(-1,1)$, we have a single morphism $x\to y$ if $x\leq y$, and no morphisms otherwise. 
 
-The interpretation is that an object in this category represents the belief strength in a statement; $0$ represents total epåistemic uncertainty, $1$ represents true belief, and $-1$ represents true disbelief.  
+The interpretation is that an object in this category represents the belief strength in a statement; $0$ represents total epistemic uncertainty, $1$ represents true belief, and $-1$ represents true disbelief.  
 
-This is given a symmetric monoidal structure via the hyperbolic sum,
+This is given a symmetric monoidal structure via the hyperbolic sum. 
 $$x\otimes y = \frac{x+y}{1+xy},$$
 which semantically makes it possible to combine, or fuse, beliefs. 
 
 \begin{remark}
-    The hyperbolic sum is also used in physics to add relativistic velocities, see for example \cite{parker-jeynes-walker_2025}.
+    The hyperbolic sum, also called the Einstein $t$-conorm, is used in physics to add relativistic velocities, see for example \cite{parker-jeynes-walker_2025}.
 \end{remark}
 
 Opdan writes the operation as
@@ -37,69 +39,14 @@ Notice also that we can revoke Cromwell's rule in the category by adding the ext
 
 We define $\CF$ to be the category described above, with the added extremes $-1$ and $1$. We now use this as the template for a general definition. 
 
-\subsection{General definition}
-Based on the properties of $\CF$ above, we can now make a general definition. An \emph{epistemic syntax} is a (non-trivial) unital symmetric monoidal posetal category $(\V, \leq_\V, \otimes_\V, \1_\V)$. We will usually omit the indices when the category is clear. We interpret $(\V, \leq, \otimes, \1)$ by objects in $\V$ being epistemic values, morphisms being comparisons of values, and the monoidal product being fusion of values -- the monoidal unit $\1$ is interpreted as total epistemic uncertainty.
-
-Using these general models we can start to layer on properties and descriptions. These are axioms one can add to an epistemic syntax, and not something that is automatic from the definition. 
-
-\textbf{E1:} There exists an element $\top \in \V$ such that $x\leq \top$ for all $x$. 
-
-Such a ``top'' element is often called the \emph{truth}. An epistemic category satisfying \textbf{E1} is said to be \emph{optimistic}. If no truth-element exists, like in $\CF$, is said to be \emph{skeptic}. These definitions emulate the philosophical positions of \emph{epistemological optimism} and \emph{radical skepticism}. 
-
-An extension of this is the requirement that $\V$ has all joins, which is a generalization of having all supremums. 
-
-\textbf{E2:} Given a subset of objects $S\subseteq \V$, there is a least upper bound $\bigvee S$, called the \emph{join} of $S$. 
-
-By \cite{fong-spivak_2019} any epistemic syntax with all joins also has all \emph{meets}, making it a \emph{symmetric monoidal lattice}. An epistemic syntax satisfying \textbf{E2} is said to be \emph{complete}. If $\V$ is complete, then it also satisfies \textbf{E1}, as $\top$ is the meet over the empty set. The category $\CF$ is easily seen to be complete. 
-
-In $\CF$ we notice that given objects $x,y$ such that $0 \leq x\otimes_\CF y$, then at least one of $x,y$ had to be non-negative as well. This is interpreted as as the impossibility of creating certainty from sources that didn't already contain certainty.
-
-\textbf{E3:} Ff $\1_\V \leq x\otimes_\V y$, then either $\1_\V \leq x$ or $\1_\V \leq y$.
-
-Furthermore, in $\CF$, note that we have an ``inverse'' to the symmetric monoidal product on $\CF$, called an \emph{internal hom}. The category $\CF$ has an internal hom if there is a natural binary operation $[-,-]$ such that for all triplets of objects $x,y,z$ we have 
-$$x\otimes_\CF y \leq z \iff x\leq [y,z].$$
-One can easily check that hyperbolic subtraction
-$$[x,y] = \frac{x-y}{1-xy}$$
-satisfies this property, making it an internal hom in $\CF$. This makes $\CF$ a \emph{closed symmetric monoidal preorder} in the sense of \cite{bradley-terilla-vlassopoulos_2022} and \cite{fong-spivak_2019}. 
-
-\textbf{E4:} The symmetric monoidal structure is closed. 
+\section{Epistemic calculi}
+Based on the properties of $\CF$ above, we can now make a general definition. An \emph{epistemic calculus} is a (non-trivial) unital symmetric monoidal posetal category $(\V, \leq_\V, \otimes_\V, \1_\V)$. We will usually omit the indices when the category is clear. We interpret $(\V, \leq, \otimes, \1)$ by objects in $\V$ being epistemic values, morphisms being comparisons of values, and the monoidal product being fusion of values -- the monoidal unit $\1$ is interpreted as total epistemic uncertainty.
 
 \begin{remark}
-    It is here important to note that \emph{closed} refers to the categorical structure, and not to \emph{epistemic closure}, as in for example \cite{holliday_2015}. Note also that having an internal hom is equivalent to the symmetric monoidal category being enriched over itself \cite[Section 1.6]{kelly_1982}. 
+    This definition is simply an abstraction of $t$-norms on the unit interval $[0,1]$, see \cite{klement-mesiar-pap_2000}. We also here restrict ourselves to symmetric structures, in order to model evidence fusion rather than updating, which we focus on in \cref{sses:updating}. 
 \end{remark}
 
-A property not satisfied by $\CF$ is \emph{epistemic conservativity}. This is a philosophical position essentially stating that it's reasonable to stick with your current beliefs unless you have good reasons to change them, \cite{mccain_2008}. This essentially means that we place the burden of proof on changing beliefs rather than holding them. Given an epistemic framework $\V$, we can model this as follows.
-
-\textbf{E5:} For all $x\in \V$, we have $x\leq x\otimes y$ for any $y \in \V$.
-
-Intuitively, given an epistemic value $x$ we can never reduce our belief in $x$ by fusing it with another epistemic value $y$. This is similar to modern digital echo-chamber belief dynamics. It is worth noting that the above form of conservativism is quite strong, and that more neuanced definitions depending on ther strength of the counter-evidence i spossible to define.  
-
-\begin{remark}
-    As notes, $\CF$ is not epistemically conservative; however, it is not too far off. It \emph{is} epistemically conservative on positive values, i.e. those that represent strengthened belief, and \emph{not} on negative values. This means that $\CF$ accurately models what epistemic conservativity calls ``good reasons'' to change your beliefs.
-\end{remark}
-
-Another important epistemological concept is that of \emph{idempotency}. This is the position that ones belief in a statement should not affected by the same evidence from the same source multiple times. If we learn evidence for a statement by reading a book, we cannot strengthen our belief in the statement by reading the same book again.  
-
-\textbf{E6:} For all $x\in \V$, we have $x\otimes x = x$.
-
-An epistemic syntax satisfying \textbf{E6} avoids issues similar to Vogel's bootstrapping argument, \cite{vogel_2008}. 
-
-A final property that we consider here is that of \emph{epistemic fallibilism}, which is the philosophical position that all ones beliefs can be updated when presented with contradictory evidence or good new arguments for the contrary -- see for example \cite{kekes_1972} or \cite{feldman_1981}. Simply stated, no belief is infallible. We can model this as follows. 
-
-\textbf{E7:} For all $x, y\in \V$ there exists a $z\in \V$ such that $x\otimes z \leq y$. If $\V$ satisfies \textbf{E1}, then we require this for all $x\neq \top$. 
-
-Notice that when $x\leq y$ we can choose $z = \1$, so this is really a statement about updating a belief to obtain something one believes less strongly. 
-
-Finally we add the property of \emph{cancellativity}, which states that fusing the same evidence with two values cannot change their relative strength. 
-
-\textbf{E8:} If $x\otimes z \leq y \otimes z$, then also $x \leq y$. 
-
-An epistemic syntax $\V$ being cancellative means that its algebraic structure behaves like an abelian group. 
-
-
-
-
-\section{Examples}
+\subsection{Examples}
 Building on the ideas in the previous section we describe some known examples in our abstract framework. %Note that, as with $\CF$, these will all have an epistemically complete and a non-complete version, depending on whether one invokes Cromwell's rule. 
 
 %\todo[inline]{Fix this section, maybe remove?}
@@ -113,47 +60,109 @@ Building on the ideas in the previous section we describe some known examples in
 %$$[p,q] = \frac{p(1-q)}{p(1-q)+q(1-p)},$$
 %but for the extreme values $0$ and $1$ this breaks down, and the set $\{z\mid x\otimes_\BP z \leq y\}$ is empty. 
 
-\subsection{Possibility theory}
-Possibility theory can be thought of as a version of probability theory where one replaces the standard ring structure on $\R$ with its tropical max-plus or min-plussemi ring structure -- see \cite{green_1979} for an early description, and \cite{pin_1998} for a more develped approach. Possibility theory was introduced by Zadeh in \cite{zadeh_1978}, and later expanded upon further by Dubois--Prade, see \cite{dubois-prade_1988} or the survey \cite{dubois-prade_2015}. 
+\textbf{Possibility theory} \\
+Possibility theory was introduced by Zadeh in \cite{zadeh_1978}, and later expanded upon further by Dubois--Prade, see \cite{dubois-prade_1988} or the survey \cite{dubois-prade_2015}. Possibility theory can be thought of as a version of probability theory where one replaces the standard ring structure on $\R$ with its tropical max-plus or min-plussemi ring structure -- see \cite{green_1979} for an early description, and \cite{pin_1998} for a more develped approach. 
 
-Possibility theory works by assigning a value $P(H)\in [0,1]$ to a given hypothesis $H$, which measures how possible the hypothesis is. A value of $0$ means that the hypothesis is not possible, while a value of $1$ means that it is fully possible. Fusion is given by $P(H_1\cup H_2)=\min(P(H_1), P(H_2))$. A second parameter, called the \emph{necessity}, defined by $N(H)=1-P(\not H)$, measures the extent of how necessary the hypothesis is. 
+Possibility theory assigns a value $P(H)\in [0,1]$ to a given hypothesis $H$, which measures how possible the hypothesis is. A value of $0$ means that the hypothesis is not possible, while a value of $1$ means that it is fully possible. Fusion is given by $P(H_1\cup H_2)=\min(P(H_1), P(H_2))$. A second parameter, called the \emph{necessity}, defined by $N(H)=1-P(\neg H)$, measures the extent of how necessary the hypothesis is. 
 
 Stripping away the connection to hypotheses and semantics, we define the category $\PT$ to be the standard preorder category on the unit interval $[0,1]$. We give this category the monoidal structure defined by 
 $$x \otimes y = \min(x,y).$$
 The monoidal unit is then $1$, which correctly equates complete epistemic uncertainty with pure possibility.  
 
-\begin{theorem}
-    The category $\PT$ is a complete, idempotent and satisfies epistemic fallibility. 
-\end{theorem}
+Readers familiar with possibility theory might wonder where the necessity values enter the picture. Necessity is a semantic operation, as it requires the negation operator $\neg$ on hypotheses. Hence it is not part of the syntactic structure.
 
-Readers familiar with possibility theory might wonder where the necessity values enter the picture. But, necessity is a semantic operation, as it requires the negation operator on hypotheses, being defined as $N(H) = 1- P(\neg H)$.
-
-One way to include a tyupe of necessity into the syntactic structure is by using bipolar possibility theory. 
+One way to include a type of necessity into the syntactic structure is by using bipolar possibility theory. 
 
 
-\subsection{Bipolar possibility theory}
+\textbf{Bipolar possibility theory} \\
 Bipolar possibility theory, see \cite{benferhat-dubois-kaci-prade_2006} and \cite{dubois-lorini-prade_2013}, is an extension of possibility theory. It introduces a second set of operators, meaning it has four operators: $P$, $N$, $\Delta$ and $\nabla$. These are respectively called \emph{strong possibility}, \emph{weak necessity}, \emph{weak possibility} and \emph{strong necessity}. 
 
 We define $\PTb$ to be the category with objects $\{(x, y)\in I\times I \mid x \leq y\}$. This is interpreted as $x$ measuring the degree of rejection, or \emph{guaranteed impossibility} of a hypothesis and $y$ measuring the degree of \emph{potential possibility}. The morphisms are determined by the preorder given by 
 $$(x, y) \leq (x', y') \text{ if } x \geq x' \text{ and } y\leq y'.$$
-We equip $\PN$ with a symmetric monoidal structure defined by 
-$$(x,y)\otimes_\PL (x',y') = (\max(x,x'), \min(y,y')).$$
+We equip $\PTb$ with a symmetric monoidal structure defined by 
+$$(x,y)\otimes (x',y') = (\max(x,x'), \min(y,y')).$$
 This is associative, symmetric and has unit $(0,1)$, which is the correct epistemic interpretation -- it is not rejected and fully possible, which is another way of stating complete epistemic uncertainty. 
 
 Bipolar possibility theory allows us to retain the feature that belief and disbelief in a hypothesis are kept separate, and not treated equally -- disbelief is not simply the absence of belief, or, as popularized by Sagan, ``absence of evidence is not evidence of absence'' \cite{sagan_1997}. 
 
-\begin{theorem}
-    The category $\PTb$ is complete, idempotent and epistemically conservative. 
-\end{theorem}
-
-
-\subsection{Interval probabilities}
-Another epistemic syntax comes from \emph{interval-based probabilities}, which is an interpretation of uncertainty in probabilities. Here we model a very simple version using the intersection operator as monoidal structure. 
+\textbf{Interval probabilities} \\
+Another epistemic calculus comes from \emph{interval-based probabilities}, which is an interpretation of uncertainty in probabilities. Here we model a very simple version using the intersection operator as monoidal structure. 
 
 Let $\IP$ be the symmetric monoidal category with objects the closed sub-intervals of $I = [0,1]$. The morphisms are determined by the containment-preorder, $[x,y]\leq [x',y']]$ if $[x,y] \subseteq [x', y']$, while the symmetric monoidal structure is given by 
-$[x,y]\otimes_\IP [x',y'] = [x,y]\cap [x', y'].$
+$$[x,y]\otimes_\IP [x',y'] = [x,y]\cap [x', y'].$$
 
 The monoidal unit is the full interval $[0,1]$. By the interpretation that interval probabilities are uncertain probabilities, and that the \emph{true} probability is residing somewhere in the interval, then $[0,1]$ simply means that we know absolutely nothing about the true probability of the hypothesis. 
+
+
+\subsection{Extensions and properties}
+With these examples in mind we can start to layer on extra structure to the general definition. We do this in the form of additional axioms one can add to an epistemic calculus. Note that these  not something that is automatic from the general definition. 
+
+\textbf{E1:} There exists an element $\top \in \V$ such that $x\leq \top$ for all $x$. 
+
+Such a ``top'' element is often called the \emph{truth}. An epistemic category satisfying \textbf{E1} is said to be \emph{optimistic}. If no truth-element exists, like in $\CF$, is said to be \emph{skeptic}. These definitions emulate the philosophical positions of \emph{epistemological optimism} and \emph{radical skepticism}. 
+
+An extension of this is the requirement that $\V$ has all joins, which is a generalization of having all supremums. 
+
+\textbf{E2:} Given a subset of objects $S\subseteq \V$, there is a least upper bound $\bigvee S$, called the \emph{join} of $S$. 
+
+By \cite[2.72]{fong-spivak_2019} any epistemic calculus with all joins also has all \emph{meets}, making it a \emph{symmetric monoidal lattice}. An epistemic calculus satisfying \textbf{E2} is said to be \emph{complete}. If $\V$ is complete, then it also satisfies \textbf{E1}, as $\top$ is the meet over the empty set. The category $\CF$ is easily seen to be complete. 
+
+In $\CF$ we notice that given objects $x,y$ such that $0 \leq x\otimes_\CF y$, then at least one of $x,y$ had to be non-negative as well. This is interpreted as as the impossibility of creating certainty from sources that didn't already contain certainty.
+
+\textbf{E3:} If $\1_\V \leq x\otimes_\V y$, then either $\1_\V \leq x$ or $\1_\V \leq y$.
+
+Furthermore, in $\CF$, note that we have an ``inverse'' to the symmetric monoidal product on $\CF$, called an \emph{internal hom}. The category $\CF$ has an internal hom if there is a natural binary operation $[-,-]$ such that for all triplets of objects $x,y,z$ we have 
+$$x\otimes_\CF y \leq z \iff x\leq [y,z].$$
+One can easily check that hyperbolic subtraction
+$$[x,y] = \frac{x-y}{1-xy}$$
+satisfies this property, making it an internal hom in $\CF$. This makes $\CF$ a \emph{closed symmetric monoidal preorder} in the sense of \cite{bradley-terilla-vlassopoulos_2022} and \cite{fong-spivak_2019}. 
+
+\textbf{E4:} The symmetric monoidal structure is closed. 
+
+\begin{remark}
+    It is here important to note that \emph{closed} refers to the categorical structure, and not to \emph{epistemic closure}, as in for example \cite{holliday_2015}. 
+\end{remark}
+
+Having an internal hom is equivalent to the symmetric monoidal category being enriched over itself \cite[Section 1.6]{kelly_1982}. Interpreting the monoidal structure as a generalization of a $t$-norm, the internal hom is simply the generalization of a \emph{residuum}, see \cite{klement-mesiar-pap_2000}. Possibility theory is also closed via standard Gödel implication: 
+$$[x,y] = 
+\begin{cases}
+    1, & x \leq y \\
+    y, & x > y.
+\end{cases}
+$$
+
+A property not satisfied by $\CF$ is \emph{epistemic conservativity}. This is a philosophical position essentially stating that it's reasonable to stick with your current beliefs unless you have good reasons to change them, \cite{mccain_2008}. This essentially means that we place the burden of proof on changing beliefs rather than holding them. Given an epistemic framework $\V$, we can model a strong version of this as follows.
+
+\textbf{E5:} For all $x\in \V$, we have $x\leq x\otimes y$ for any $y \in \V$.
+
+Intuitively, given an epistemic value $x$ we can never reduce our belief in $x$ by fusing it with another epistemic value $y$. This is similar to modern digital echo-chamber belief dynamics. It is worth noting that the above form of conservativism is quite strong, and that more neuanced definitions depending on ther strength of the counter-evidence i spossible to define.  
+
+\begin{remark}
+    As noted, $\CF$ is not strongly epistemically conservative; however, it is not too far off. It \emph{is} strongly epistemically conservative on positive values, i.e. those that represent strengthened belief, and \emph{not} on negative values. This means that $\CF$ accurately models what epistemic conservativity calls ``good reasons'' to change your beliefs.
+\end{remark}
+
+Another important epistemological concept, satisfied by for example $\PT$, is that of \emph{idempotency}. This is the position that ones belief in a statement should not affected by the same evidence from the same source multiple times. If we learn evidence for a statement by reading a book, we cannot strengthen our belief in the statement by reading the same book again.  
+
+\textbf{E6:} For all $x\in \V$, we have $x\otimes x = x$.
+
+An epistemic calculus satisfying \textbf{E6} avoids issues similar to Vogel's bootstrapping argument, \cite{vogel_2008}. 
+
+A final property that we consider here is that of \emph{epistemic fallibilism}, which is the philosophical position that all ones beliefs can be updated when presented with contradictory evidence or good new arguments for the contrary -- see for example \cite{kekes_1972} or \cite{feldman_1981}. Simply stated, no belief is infallible. We can model this as follows. 
+
+\textbf{E7:} For all $x, y\in \V$ there exists a $z\in \V$ such that $x\otimes z \leq y$. If $\V$ satisfies \textbf{E1}, then we require this for all $x\neq \top$. 
+
+Notice that when $x\leq y$ we can choose $z = \1$, so this is really a statement about updating a belief to obtain something one believes less strongly. 
+
+Finally we add the property of \emph{cancellativity}, which states that fusing the same evidence with two values cannot change their relative strength. 
+
+\textbf{E8:} If $x\otimes z \leq y \otimes z$, then also $x \leq y$. 
+
+An epistemic calculus $\V$ being cancellative means that its algebraic structure behaves like an abelian group. 
+
+
+
+
+
 
 
 
@@ -165,36 +174,38 @@ One benefit of defining systems of epistemic uncertainty calculi in this general
 One obvious result is that \textbf{E5} and \textbf{E7} cannot be satisfied at the same time. 
 
 \begin{lemma}
-    An epistemic syntax $\V$ cannot be both epistemically conservative and fallible.
+    An epistemic calculus $\V$ cannot be both streongly epistemically conservative and fallible.
 \end{lemma}
 \begin{proof}
     Easily seen by choosing $y = x$ in the definition of \textbf{E7}.  
 \end{proof}
 
-One no-go result is the following, stating that an epistemic syntax $\V$ satisfying \textbf{E2} cannot satisfy both \textbf{E4} and \textbf{E5} and \textbf{E8}. The idea is that closure and cancellativity force negative beliefs to exist, which is incompatible with conservativity. 
+One no-go result is the following, stating that an epistemic calculus $\V$ satisfying \textbf{E2} cannot satisfy both \textbf{E4} and \textbf{E5} and \textbf{E8}. The idea is that closure and cancellativity force negative beliefs to exist, which is incompatible with strong conservativity. 
 
 \begin{theorem}
-    A complete non-trivial epistemic framework $\V$ cannot be both closed, epistemically conservative and cancellative. 
+    A complete non-trivial epistemic framework $\V$ cannot be both closed, strongly epistemically conservative and cancellative. 
 \end{theorem}
 \begin{proof}
-    Assume for the sake of contradiction that $\V$has all three properties, and choose objects $x,y$ such that $y \leq x$. The inner hom $[x,y]$ is the least upper bound of the set $\{z\in \V \mid x\otimes z \leq y\}$, as can be easily seen by its defining property. If $z$ is in this set, then as $\V$ is conservative, we have 
+    Assume for the sake of contradiction that $\V$ has all three properties, and choose objects $x,y$ such that $y \leq x$. The inner hom $[x,y]$ is the least upper bound of the set $\{z\in \V \mid x\otimes z \leq y\}$, as can be easily seen by its defining property. If $z$ is in this set, then as $\V$ is strongly conservative, we have 
     $x\otimes z \leq y \leq y\otimes z,$
-    which implies $x\leq y$ by cancellativity. Hence, the set $\{z\in \V \mid x\otimes z \leq y\}$ is empty, giving $[x,y] = \bot$. But, this implies that the defining formula $z\otimes x \leq y \iff z\leq [x,y] = \bot$ is only valid for $z = \bot$, which contradicts the non-triviality of $\V$. 
+    which implies $x\leq y$ by cancellativity. Hence, $\{z\in \V \mid x\otimes z \leq y\}$ is empty, giving $[x,y] = \bot$. But, this implies that the defining formula $z\otimes x \leq y \iff z\leq [x,y] = \bot$ is only valid for $z = \bot$, which contradicts the non-triviality of $\V$. 
 \end{proof}
 
-Furthermore, a complete epistemic syntax satisfies \textbf{E4} if and only if it satisfies \textbf{E7}. 
+Furthermore, a complete epistemic calculus satisfies \textbf{E4} if and only if it satisfies \textbf{E7}. 
 
 \begin{theorem}
-    A complete epistemic syntax $\V$ satisfies epistemic fallibility if and only if it is closed. 
+    A complete epistemic calculus $\V$ satisfies epistemic fallibility if and only if it is closed. 
 \end{theorem}
 \begin{proof}
-    Assuming first \textbf{E7}, we have that the set $\{z \mid x\otimes z \leq y\}$ is non-empty. By completeness the least upper bound exists, and is equivalent to $[x,y]$ by the argument earlier. Conversely, if $\V$ is closed, then again the above set is non-empty, implying \textbf{E7}. 
+    Assuming first \textbf{E7}, we have that the set 
+    $$\{z \mid x\otimes z \leq y\}$$ 
+    is non-empty. By completeness the least upper bound exists, and is equivalent to $[x,y]$ by the argument earlier. Conversely, if $\V$ is closed, then again the above set is non-empty, implying \textbf{E7}. 
 \end{proof}
 
 In Zadeh's fuzzy logic, see \cite{zadeh_1965} or \cite{klir-yuan_1995}, there is a standard result stating that the only idempotent $t$-norm is the Gödel $t$-norm (the $\min$ operator) -- see for example \cite[3.3]{dudek-jun_1999}. We can also prove an analogue of this result in our setting, making it even more structural. 
 
 \begin{theorem}
-    Let $\V$ be an epistemic syntax on a total order structure with $\1 = \top$. If the monoidal structure on $\V$ is idempotent, then $p\otimes q = \min(p, q)$. 
+    Let $\V$ be an epistemic calculus on a total order structure with $\1 = \top$. If the monoidal structure on $\V$ is idempotent, then $p\otimes q = \min(p, q)$. 
 \end{theorem}
 \begin{proof}
     By totality of the order assume without loss of generality that $x\leq y$. By monotonicity and idempotency of $\otimes$, we have 
@@ -205,22 +216,19 @@ In Zadeh's fuzzy logic, see \cite{zadeh_1965} or \cite{klir-yuan_1995}, there is
 \end{proof}
 
 \begin{corollary}
-    The category $\PT$ is the unique idempotent epistemic syntax on $[0,1]$ up to order-preserving isomorphism. 
+    The category $\PT$ is the unique idempotent epistemic calculus on $[0,1]$ up to order-preserving isomorphism. 
 \end{corollary}
 
 We summarize this section with an overview of the properties of the examples presented. Note that all examples also have non-complete versions by invoking Cromwell's rule, and the list is easily extendable to these as well. 
 
-\todo[inline]{Fix table with cats n values}
-
-\begin{table}[]
-\begin{tabular}{l | lllllll}
-     & \textbf{E1} & \textbf{E2} & \textbf{E3} & \textbf{E4} & \textbf{E5} & \textbf{E6} & \textbf{E7} \\
+\begin{table}[h]
+\begin{tabular}{l | llllllll}
+     & \textbf{E1} & \textbf{E2} & \textbf{E3} & \textbf{E4} & \textbf{E5} & \textbf{E6} & \textbf{E7} & \textbf{E8} \\
      \hline
-$\CF$  & \checkmark  & \checkmark  & \checkmark  & \checkmark  &    &    & \checkmark  \\
-$\BP$  & \checkmark  & \checkmark  & \checkmark  & \checkmark  &    &    & \checkmark  \\
-$\PT$  & \checkmark  & \checkmark  & \checkmark  &    & \checkmark  & \checkmark  &    \\
-$\PTb$ & \checkmark  & \checkmark  & \checkmark  &    & \checkmark  & \checkmark  &    \\
-$\IP$  & \checkmark  & \checkmark  & \checkmark  &    & \checkmark  & \checkmark  &   
+$\CF$  &\checkmark  &\checkmark &\checkmark &\checkmark & & &\checkmark &\checkmark \\
+$\PT$  &\checkmark  &\checkmark &\checkmark &\checkmark & &\checkmark &\checkmark & \\
+$\PTb$ &\checkmark  &\checkmark &\checkmark & & &\checkmark &\checkmark & \\
+$\IP$  &\checkmark  &\checkmark &\checkmark & & &\checkmark &\checkmark &
 \end{tabular}
 \end{table}
 
@@ -230,21 +238,21 @@ Enticingly, $\PTb$ and $\IP$ satisfy all of the same axioms. This is a good indi
 
 
 \section{Change of frameworks}
-Usually one is limited by using a single framework for measuring and quantifying uncertainty. One of the reasons for this work was to build a conceptual foundation for how one could \emph{change} ones framework during or after measurements are being made. It is perhaps easy to think that this is simply done by applying some translation function on values, but this makes is highly opaque how this affects the whole structure of uncertainty measurements. The language used above allows us to understand how to make sure everything works out nicely, and allows us to further understand the consequences of the changes.
+Usually one is limited by using a single framework for measuring and quantifying uncertainty. One of the reasons for this work was to build a conceptual foundation for how one could \emph{change} ones framework during or after measurements are being made. It is perhaps easy to think that this is simply done by applying some translation function on values, but this makes it highly opaque how this affects the whole structure of uncertainty measurements. The language used above allows us to understand how to make sure everything works out nicely, and allows us to further understand the consequences of the changes.
 
-If $\V$ and $\W$ are epistemic syntaxes, then a \emph{conservative syntax change} is a lax symmetric monoidal functor $F\: \V \to \W$. In particular, $F$ satisfies 
+If $\V$ and $\W$ are epistemic calculi, then a \emph{conservative change of calculi} is a lax symmetric monoidal functor $F\: \V \to \W$. In particular, $F$ satisfies 
 \begin{itemize}
     \item $x\leq_\V y$, then $F(x)\leq_\W F(y)$;
     \item $F(x)\otimes_\W F(y) \leq_\W F(x\otimes_\V y)$;
     \item $\1_\W \leq_\W F(\1_\V).$
 \end{itemize}  
-Similarly, a \emph{liberal syntax change} is an op-lax monoidal functor $F\: \V \to \W$, meaning it satisfies 
+Similarly, a \emph{liberal change of calculi} is an op-lax monoidal functor $F\: \V \to \W$, meaning it satisfies 
 \begin{itemize}
     \item $x\leq_\V y$, then $F(x)\leq_\W F(y)$;
     \item $F(x\otimes_\V y) \leq_\W F(x)\otimes_\W F(y)$;
     \item $F(\1_\V) \leq_\W \1_\W.$
 \end{itemize}  
-The fact that these are functors makes sure that the value comparisons stay consistent before and after the change of syntax. The lax symmetric monoidality means that fusion of information along a conservative syntax change cannot produce \emph{more} certainty than was already present in the original syntax. Conversely, fusion of information along a liberal syntax change cannot produce \emph{less} certainty than was already present in the original syntax. If a functor is both conservative and liberal, we say it is \emph{balanced}. A balanced syntax change then satisfies 
+The fact that these are functors makes sure that the value comparisons stay consistent before and after the change of calculi. The lax symmetric monoidality means that fusion of information along a conservative change cannot produce \emph{more} certainty than was already present in the original calculus. Conversely, fusion of information along a liberal change cannot produce \emph{less} certainty than was already present in the original calculus. If a functor is both conservative and liberal, we say it is \emph{balanced}. A balanced change then satisfies 
 \begin{itemize}
     \item $F(x)\otimes_\W F(y) = F(x\otimes_\V y)$;
     \item $\1_\W = F(\1_\V),$
@@ -261,7 +269,7 @@ in other words, it is a symmetric monoidal functor.
 %        \Phi\: \BP &\to \CF \\
 %        p &\longmapsto 2p-1
 %    \end{align*}
-%    is a balanced syntax change. In particular, it is a symmetric monoidal equivalence. 
+%    is a balanced calculus change. In particular, it is a symmetric monoidal equivalence. 
 %\end{theorem}
 %\begin{proof}
 %    It is easy to see that $\Phi$ is a bijection on objects, with inverse $\Phi^{-1}(q)=\frac{q+1}{2}$. The monotonicity of $\Phi$ also ensures that it is in fact a functor. As for monoidality, note that we have $\Phi(\frac{1}{2})=0$, hence $\Phi$ sends the monoidal unit to the monoidal unit. Furthermore, the computation 
@@ -284,25 +292,29 @@ Let us prove the statement we made earlier, about the equivalence between $\PTb$
     The assignment 
     \begin{align*}
         \Psi \: \PTb &\to \IP \\
-        (\delta,p) &\longmapsto [\delta,p]
+        (x,y) &\longmapsto [x,y]
     \end{align*}
-    is a balanced syntax change. In particular, with the intersection monoidal structure on $\IP$, the map $\Psi$ is an equivalence. 
+    is a balanced change of calculi. In particular, with the intersection monoidal structure on $\IP$, the map $\Psi$ is an equivalence. 
 \end{lemma}
 \begin{proof}
-    The map is easily seen to be an equivalence on objects. It is also monotone on the monoidal structures. Finally, for two objects $(\delta, p)$ and $(\delta', p')$ we have 
+    The map is easily seen to be an equivalence on objects. It is also monotone on the monoidal structures. Finally, for two objects $(x, y)$ and $(x', y')$ we have 
     \begin{align*}
-        \Phi((\delta, p)\otimes (\delta', p')) 
-        &= \Phi(\max(\delta, \delta'), \min(p,p')) \\
-        &= [\max(\delta, \delta'), \min(p,p')] \\
-        &= [\delta, p]\cap [\delta', p] \\
-        &= \Phi(\delta, p)\otimes \Phi(\delta', p'),
+        \Phi((x, y)\otimes (x', y')) 
+        &= \Phi(\max(x, x'), \min(y,y')) \\
+        &= [\max(x, x'), \min(y,y')] \\
+        &= [x, y]\cap [x', y] \\
+        &= \Phi(x, y)\otimes \Phi(x', y'),
     \end{align*}
     which proves it is balanced. 
 \end{proof}
 
+\begin{remark}
+    Note that while the above map is an equivalence, the use and semantics are often different. The degree of rejection is here mapped to the lower bound for the probability, which intuitively seems out of place. This shows that the underlying calculi might be equivalent, even though our interpretation of them are different. We are only concerned with this type of syntactic equivalence in the present work, but hope to expand this notion further in the future to also include interpretation into the structure. 
+\end{remark}
+
 We also have a natural map $F\: \PT \to \CF$ given on objects by $F(x) = 2x-1$. As this map is monotone, it also extends to a functor. Notice that we have $F(1) = 1 \geq 0$. Also, if we assume $x \leq y$, then 
 $$F(x\otimes_\PT y) = F(x) \leq F(x)\otimes_\CF F(y)$$
-as you cannot create lower epistemic values in $\CF$ by fusing with something of higher value. Hence $F$ is an op-lax monoidal functor, or in other words a liberal syntax change. 
+as you cannot create lower epistemic values in $\CF$ by fusing with something of higher value. Hence $F$ is an op-lax monoidal functor, or in other words a liberal change of calculi. 
 
 This map feels a bit odd, as the monoidal unit $1$ is mapped to the top value $\top$, and since it is a rescaling, $\frac{1}{2}$ is mapped to $0$. This is ok formally, but perhaps not a good map to compare epistemic frameworks. The problem is that our version of possibility cannot incorporate negative evidence, and needs semantics to have a notion of necessity, which is why we added bipolar possibility theory. Let us see how this also fixes the above problematic map. 
 
@@ -311,10 +323,10 @@ Recall that a point $(x,y) \in \PTb$ is interpreted as $x$ being the degree of r
     F \: \PTb &\to \CF \\ 
     (x,y) &\longmapsto y-(1-x)
 \end{align*}
-which measures possibility minus non-rejectedness, resulting in a kind of single value belief. In particular, $F(0,1)=0$, $F(1,1)=1$ and $F(0,0) = -1$. One can check that this gives a liberal syntax change. 
+which measures possibility minus non-rejectedness, resulting in a kind of single value belief. In particular, $F(0,1)=0$, $F(1,1)=1$ and $F(0,0) = -1$. One can check that this gives a liberal change of calculi. 
 
 \begin{remark}
-    Notice that the ``inconsistent'' state $(1,1)$, interpreted as both fully possible and fully impossible due to rejection, is sent to the maximal belief state. This is also not very intuitive. One way to fix this is to interpret the pair $(x,y)$ as $x$ being non-rejectedness, and $y$ being possiblity, and changing the monoidal structure to $\min$-$\min$, instead of $\max$-$\min$. Then one can define a conservative syntax change $F(x,y)=x+y-2$, which has a more suitable semantic interpretation. But, to have some connection to bipolar possibility theory due to future applications to Zwicky's morphological analysis for scenario development, we have decided to keep it as is. 
+    Notice that the ``inconsistent'' state $(1,1)$, interpreted as both fully possible and fully impossible due to rejection, is sent to the maximal belief state. This is also not very intuitive. One way to fix this is to interpret the pair $(x,y)$ as $x$ being non-rejectedness, and $y$ being possiblity, and changing the monoidal structure to $\min$-$\min$, instead of $\max$-$\min$. Then one can define a conservative change $F(x,y)=x+y-2$, which has a more suitable semantic interpretation. 
 \end{remark}
 
 
@@ -323,35 +335,36 @@ which measures possibility minus non-rejectedness, resulting in a kind of single
 \subsection{Enriched category theory}
 One way to add epistemic uncertainty quantification directly into a process is by utilizing \emph{enriched categories}. This is a theory that endows a category with extra structure, coming from another category. Our approach is \emph{relational} and not pointwise. This follows the dictums of category theory, where the relational structure and how an object is situated in its context, is more important than the object itself. 
 
-Let $(\V,\otimes_\V, \1_\V)$ be a symmetric monoidal category. A $\V$-enriched category $\C$ is a collection of objects $\Ob(\C)$, together with an object $\V(x,y) \in \V$ for any pair of objects $x, y \in \C$, a morphism $\1_\V \to \V(x,x)$ called the identity, and a morphism 
+Let $(\V,\otimes_\V, \1_\V)$ be a symmetric monoidal category. A $\V$\emph{-enriched category} $\C$ is a collection of objects $\Ob(\C)$, together with an object $\V(x,y) \in \V$ for any pair of objects $x, y \in \C$, a morphism $\1_\V \to \V(x,x)$ called the identity, and a morphism 
 $$\V(y,z)\otimes_\V \V(x,y) \to \V(x,z)$$
 for any three objects $x, y, z$ called the composition. These must also satisfy natural associativity and unitality conditions, see \cite{kelly_1982} for details. 
 
-The central idea for adding epistemic uncertainty to a category $\C$ is to enrich it in an epistemic syntax. For example, define $\H$ to be a category consisting of hypotheses $H$, and morphisms $H\to H'$ being belief updates. We can make $\H$ into an enriched category over any uncertainty framework $\C$ in order to have a quantitative measure of how much we believe hypothesis $H'$ based on $H$. In particular this means assigning to each belief update $f\: H\to H'$ an epistemic uncertainty value $\C(f)$, such that $\C(\id_H) = \1_\C$ for any $H$ --  no hypothesis can justify its own belief -- and such that composition respects the monoidal structure in $\C$, i.e. 
+The central idea for adding epistemic uncertainty to a category $\C$ is to enrich it in an epistemic calculus. For example, define $\H$ to be a category consisting of hypotheses $H$, and morphisms $H\to H'$ being belief updates. We can make $\H$ into an enriched category over any uncertainty framework $\C$ in order to have a quantitative measure of how much we believe hypothesis $H'$ based on $H$. In particular this means assigning to each belief update $f\: H\to H'$ an epistemic value $\C(f)$, such that $\C(\id_H) = \1_\C$ for any $H$ --  no hypothesis can justify its own belief -- and such that composition respects the monoidal structure in $\C$, i.e. 
 $$\C(f'\circ f) = \C(f)\otimes_\C \C(f')$$
-for any $H\to H'\to H''$. In \cite{opdan_2025}, Opdan uses these ideas to model sensor systems for submarine detection, and uses $\CF$ as his enriching category. 
+for any $H\to H'\to H''$. In \cite{opdan_2025}, Opdan uses these ideas to model sensor systems for submarine detection, and uses $\CF$ as his enriching category. In \cite{bradley-terilla-vlassopoulos_2022} the authors use these ideas to model large language models, using $([0,1], \leq, \cdot, 1)$ as their epistemic calculus. 
 
-Due to the general nature of our setup, we now immediately get a procedure for changing how a category uses an epistemic syntax. 
+Due to the general nature of our setup, we now immediately get a procedure for changing how a category uses an epistemic calculus. 
 
 \begin{theorem}[\cite{eilenberg-kelly_1966}]
     For any conservative or liberal change of framework $F\:\V \to \W$, there is an induced functor 
-    $$\Cat_\V \to \Cat_\W,$$
+    $$F^*\:\Cat_\V \to \Cat_\W,$$
     which assigns to a $\V$-enriched category $\C$ the $\W$-category consisting of the same objects, but whose morphism $\W$-objects are determined by the images of the morphism $\C$-objects under $F$. 
 \end{theorem}
 
-This means that for any category $\C$ enriched in some epistemic syntax $\V$, it is possible to change framework in a very natural way. We also have good control over what information is lost or gained, depending on whether the change of framework functor is conservative or liberal. 
+This means that for any category $\C$ enriched in some epistemic calculus $\V$, it is possible to change framework in a very natural way. The semantics stay the same, but the syntax changes. 
 
 
 \subsection{Enriched epistemic updating}
+\label{sses:updating}
 One piece of the puzzle that has been missing from this story so fra is how Bayesian updating, which is perhaps the standard way of encoding and updating uncertainties, fits into this framework. 
 
-First, notice that Bayes rule is not symmetric monoidal, hence it does not simply define an epistemic syntax. This also makes sense intuitively. The underlying mathematical logic of Bayes rule is not Bayes rule itself, but \emph{multiplication} and \emph{division}. Bayes rule, and other updating mechanisms for beliefs, lie one level above the mathematics. Let us describe this, and derive Bayes rule from a general categorical process. 
+First, notice that Bayes rule is not symmetric monoidal, hence it does not simply define an epistemic calculus. This also makes sense intuitively. The underlying mathematical logic of Bayes rule is not Bayes rule itself, but \emph{multiplication} and \emph{division}. Bayes rule, and other updating mechanisms for beliefs, lie one level above the mathematical logic. Let us describe this, and derive Bayes rule from a general categorical process. 
 
 \begin{remark}
     Note that there are other categorical theories for Bayesian updating, like Markov categories, see \cite{fritz_2020} and \cite{cho-jacobs_2019}. 
 \end{remark}
 
-Let $\V$ be a closed epistemic syntax, with monoidal structure $-\otimes -$ and internal hom $[-,-]$. Let furthermore $\H$ be a category of hypotheses, that is enriched in $\V$. The interpretation is again that for two hypotheses $H$ and $K$, the $\V$-object $\H(H,K)$ describes our belief in $K$ relative to $H$. 
+Let $\V$ be a closed epistemic calculus, with monoidal structure $-\otimes -$ and internal hom $[-,-]$. Let furthermore $\H$ be a category of hypotheses, that is enriched in $\V$. The interpretation is again that for two hypotheses $H$ and $K$, the $\V$-object $\H(H,K)$ describes our belief in $K$ relative to $H$. 
 
 We want to understand what happens when we incorporate a \emph{new} piece of evidence. One can incorporate the notion of ``new'' in several different ways, but for the moment we just let $E\in \H$ -- one can also think about $E$ coming from some evidence category via a $\V$-functor into $\H$.  
 
@@ -359,11 +372,11 @@ Now, given two hypotheses $H$ and $K$, and some evidence $E$, we define the $\V$
 $$\H_E(H,K) := [\H(H,K)\otimes \H(K,E), \H(H,E)].$$
 This is in fact an enrichment, as can be seen by currying and internal hom composition. The interpretation is that $\H_E(H,K)$ measures the compatability of $\H(H,K)$ with the evidence $E$. 
 
-The general shape of this idea is that ``updated comparisons = evidence - (prior comparison + evidence explained by the comparison)'', at least when interpreted in the correct coordinates. This shape is the relational form of Bayes rule, written in log-likelihood form; a statement we can make formal as follows. 
+The general shape of this idea is that ``updated comparisons = evidence - (prior comparison + evidence explained by the comparison)'', at least when interpreted in the correct coordinates. We can recognize Bayes formula to be of this shape, a statement we can make formal as follows. 
 
 \begin{theorem}
     \label{thm:bayes-rule}
-    Let $\V$ be the epistemic syntax defined by the standard preorder on $(0,\infty)$, representing likelihood ratios. We equip it with a monoidal structure $\otimes$ given by multiplication, which makes the internal hom division. If $\H$ is a $\V$-category of hypotheses, with $\V$-structure given by $\H(H, K)=\frac{p(K)}{p(H)}$, then $\V$-updating is non-normalized Bayesian updating. 
+    Let $\V$ be the epistemic calculus defined by the standard preorder on $(0,\infty)$, representing likelihood ratios. We equip it with a monoidal structure $\otimes$ given by multiplication, which makes the internal hom division. If $\H$ is a $\V$-category of hypotheses, with $\V$-structure given by $\H(H, K)=\frac{p(K)}{p(H)}$, then $\V$-updating is non-normalized Bayesian updating. 
 \end{theorem}
 \begin{proof}
     Let $E$ be an object of $\H$, and let $\H(H, E) = p(E\mid H)$. By definition we have
@@ -373,10 +386,10 @@ The general shape of this idea is that ``updated comparisons = evidence - (prior
         &= \frac{p(H) \cdot p(E\mid H)}{p(K)\cdot p(E\mid K)} \\
         &= \frac{p(H\mid E)}{p(K\mid E)}
     \end{align*}
-    which is precicely the posterior odds-ratio. 
+    which is precicely the posterior odds. 
 \end{proof}
 
-As $\V$ is assumed to be closed in this setup, one can always choose to normalize the outcome with respect to a hypothesis with value $\top \in \V$. Doing this results, for example, in a categorical construction of absolute probabilities. 
+One can also normalize the above formula, but this requires chosing a reference object. If $\V$ is complete, then it is natural to use $\top \in \V$. Doing this gives a categorical construction of absolute probabilities. 
 
 Let us also look at the $\V$-updating in some other examples. For $\V = \PT$ we recover a relational version of Dubios--Prade's possibilistic conditioning, where $\H_E(H,K)$ is given by
 $$
@@ -385,10 +398,10 @@ $$
     \H(H,E),  &\min(H,K), \H(K,E) > \H(H,E).
 \end{cases}
 $$
-The standard absolute possibilistic conditioning, see \citeme can be recovered as the relational one, by defining $p(H) = \H(R,H)$ for some reference hypothesis $R$. 
+The standard absolute possibilistic conditioning, see \cite{dubois-prade_1990}, can be recovered as the relational one, by defining $p(H) = \H(R,H)$ for some reference hypothesis $R$. 
 
-For certainty factors we can convert the general form of the $\CF$-update by using log-evidence cooredinates, i.e., applying $\tanh^{-1}$ to the expression, which gives: 
+For certainty factors we can convert the general form of the $\CF$-update by using evidence-coordinates, i.e., applying $\tanh^{-1}$ to the expression, which gives: 
 $$le_E(H,K) = le(H,E) - (le(H,K)+le(K,E)),$$
-where $le(H,K)= \tanh^{-1}\H(H,K)$ is the log-evidence. To get bavk the certainty factor we simply compute 
+where $le(H,K)= \tanh^{-1}\H(H,K)$ is the log-evidence. To get back the certainty factor we simply compute 
 $$\H_E(H,K)= \tanh(le_E(H,K)).$$
-This means that $\CF$-updating is the same as log-odds Bayesian updating, but with a bounded non-linear back-projection to $[0,1]$. This also makes sense in light of \cref{thm:bayes-rule}, as the monoidal structure on $\CF$ can be defined via the standard multiplication on $(0,\infty)$, as done in \cite{opdan_2025}. The slogan is then that Bayesian and $\CF$-updating are equivalent in log-space. 
+This means that $\CF$-updating is similar to log-odds Bayesian updating, but with a bounded non-linear back-projection to $[0,1]$. We plan to study this general $\V$-updating further in future work. 

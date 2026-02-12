@@ -2,32 +2,49 @@
 
 \section{Introduction}
 
-\todo[inline]{Write out better introduction, add citations. Now it is basically an extended abstract...}
+Any real world measurement contains some level of uncertainty, and it is often crucial to understand exactly how uncertain some measurement or statement is. Uncertainty can be either \emph{aleatoric} or \emph{epistemic}. The former relates to inherent randomness in systems, while the latter arises due to a lack of complete knowledge about the system in question -- it is this latter notion of uncertainty that is the focus of this paper. 
 
-Any real world measurement contains some uncertainty, and it is often crucial to understand exactly how uncertain some measurement or statement is. Large uncertainties propagate throughout theories, and hinder good predictions and foresight into the state of the system being studied. In order to make sure uncertainty is low, it must be quantifiable, measurable and comparable. Otherwise it is impossible to tell low uncertainty from large. 
+Our goal is to isolate the mathematical syntax of uncertainty away from its semantics, and define what we call \emph{uncertainty calculi} in the abstract. Inspired by \cite{opdan_2025}, where Opdan develops a categorical foundation for \emph{certainty factors}, as well as general $t$-norms in fuzzy logic \cite{zadeh_1965, klement-mesiar-pap_2000}, we base our theory on symmetric monoidal posetal categories, allowing the isolation of the algerbraic and order-theoretic properties such uncertainty calculi exhibit. Together with certainty factors we formalize possibility theory, bipolar possibility theory and interval probabilities in this framework. 
 
-There are in essence two kinds of uncertainty in measurements: 
-\begin{enumerate}
-    \item the inherent uncertainty in the system, like inherent randomness;
-    \item uncertainty from the lack of knowledge and information about a system. 
-\end{enumerate}
-The former is called \emph{aleatoric uncertainty}, or sometimes \emph{stochastic uncertainty}, while the latter -- the focus of this paper -- is called \emph{epistemic uncertainty}. 
-
-Epistemology concerns itself with the nature of knowledge; it tries to answer questions like: what \emph{can} we know? \emph{how} can we know? and what are the limits of knowledge? This has led to a plethora of philosophical differences of opinion, as well as a wide scape of theories. In attempting to quantify these uncertainties researchers have also developed several different mathematical models, each with their pro's and con's. These usually rely on some level of semantic input, and usually describe how to combine information about these inputs. 
-
-The first goal of this work is to define an abstract mathematical concept of \emph{epistemic syntax}. This attempts to strip away all semantic meaning, and only focus on the underlying possible mathematical logic systems for manipulating values associated to uncertainty. This puts many existing theories on a common ground, which allows us to understand their similarities and differences.  
-
-This common language allows us to introduce mathematical descriptions of traditional epistemological philosophical positions, such as \emph{conservativity}, \emph{fallibility}, \emph{optimics}, \emph{scepticism} and \emph{idempotency}. We give these axiomatic formulations and compare the relationships between them. 
-
-To accomplish this we use a general mathematical framework made for studying underlying and abstract structures, called \emph{category theory}. Categories are sometimes referred to as describing the mathematics \emph{behind} mathematics. It will give us an incredible flexibility, great generality, as well as opening up a wide possible world for future research. 
-
-Having developed some understanding of the syntactical level, we use enriched category theory construct a general method for implementing an epistemic syntax into system where one wants to measure uncertainty. One upshot of this is that we naturally get an understanding of how to \emph{change} the epistemic syntax used in a system. 
+Epistemology itself, the field concerned with the nature of knowledge, contains a plethora of philosophical differences of opinion, as well as a wide scape of theories. Using our formalization we model some of these -- \emph{closure}, \emph{conservativity}, \emph{fallibility}, \emph{cancellativity}, \emph{optimics}, \emph{scepticism} and \emph{idempotency} -- which allows us to both axiomatically compare different epistemic calculi on their philosophical positions and attitudes, as well as study interactions between these philosophical positions. 
 
 \begin{introthm}
-    Let $\V$ be the epistemic syntax $(0,\infty)$ with multiplication, and let $\H$ be a hypotheses category enriched in $\V$. Then the $\V$-update of $\H$ based som evidence object $E$ is Bayesian updating. 
+    If $\V$ is an uncertainty calculus, then $\V$ cannot be closed, conservative and cancellative simultaneously. Furthermore, if $\V$ is complete, then being closed is equivalent to being fallible. 
 \end{introthm}
 
+After concidering these axiomatic properties of uncertainty calculi in isolation, we turn our attention to the relational aspect between different calculi. Using lax and op-lax monoidal functors $F\: \V \to \W$ we model \emph{conservative} and \emph{liberal} changes of calculi, that respectively cannot create or lose certainty via fusion. Using these we compare the four examples, proving for example that bipolar possibility theory and interval probability theory are equivalet as epistemic calculi. 
+
+Having developed some understanding of the syntactical level, we use enriched category theory construct a general method for implementing epistemic calculus into system where one wants to measure uncertainty -- the semantic level. This enrichment methodology is similar to \cite{bradley-terilla-vlassopoulos_2022}, where the authors develop an enriched category theoretic foundation for LLMs. This allows us to apply methods from \cite{kelly_1982} to model \emph{change of calculi} functors, which keeps the semantic layer constant and only changes the syntactic layer of uncertainty quantification. 
+
+Bayesian updating, due to its non-symmetric nature, is not covered by the above theory. To fix this we formalize a general form of \emph{updating} in an epistemic calculus $\V$, and prove that these generalize familiar concepts. 
+
+\begin{introthm}
+    Let $\H$ be a hypotheses category enriched in an epistemic calculus $\V$. If $\V$ is the standard poset on $(0,\infty)$ together with multiplication, then $\V$-updating is the odds-form of Bayesian updating. If $\V$ is possibility theory, then $\V$-updating recovers the possibilistic conditioning of Dubois--Prade \cite{dubois-prade_1990}
+\end{introthm}
+
+It is worth pointing out that our approach to studying the calculus of uncertainty stands heavily on the shoulders of giants. Our goal is not a final theory, but simply to contribute with a new perspective on already existing ideas, and to connect philosophical and mathematical ideas to categorical notions. 
 
 
-Our approach to studying the calculus of uncertainty of course stands heavily on the shoulders of giants. Our goal is simply to contribute with a new perspective on already existing ideas, and to connect philosophical and mathematical ideas to categorical notions. 
+
+
+
+%Large uncertainties propagate throughout theories, and hinder good predictions and foresight into the state of the system being studied. In order to make sure uncertainty is low, it must be quantifiable, measurable and comparable. Otherwise it is impossible to tell low uncertainty from large. 
+
+%There are in essence two kinds of uncertainty in measurements: 
+%\begin{enumerate}
+%    \item the inherent uncertainty in the system, like inherent randomness;
+%    \item uncertainty from the lack of knowledge and information about a system. 
+%\end{enumerate}
+%The former is called \emph{aleatoric uncertainty}, or sometimes \emph{stochastic uncertainty}, while the latter -- the focus of this paper -- is called \emph{epistemic uncertainty}. 
+
+
+
+%In attempting to quantify these uncertainties researchers have also developed several different mathematical models, each with their pro's and con's. These usually rely on some level of semantic input, and usually describe how to combine information about these inputs. 
+
+%The first goal of this work is to define an abstract mathematical concept of \emph{epistemic syntax}. This attempts to strip away all semantic meaning, and only focus on the underlying possible mathematical logic systems for manipulating values associated to uncertainty. This puts many existing theories on a common ground, which allows us to understand their similarities and differences.  
+
+%This common language allows us to introduce mathematical descriptions of traditional epistemological philosophical positions, such as \emph{conservativity}, \emph{fallibility}, \emph{optimics}, \emph{scepticism} and \emph{idempotency}. We give these axiomatic formulations and compare the relationships between them. 
+
+%To accomplish this we use a general mathematical framework made for studying underlying and abstract structures, called \emph{category theory}. Categories are sometimes referred to as describing the mathematics \emph{behind} mathematics. It will give us an incredible flexibility, great generality, as well as opening up a wide possible world for future research. 
+
 
