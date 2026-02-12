@@ -39,12 +39,18 @@ Notice also that we can revoke Cromwell's rule in the category by adding the ext
 
 We define $\CF$ to be the category described above, with the added extremes $-1$ and $1$. We now use this as the template for a general definition. 
 
+
+
+
 \section{Epistemic calculi}
 Based on the properties of $\CF$ above, we can now make a general definition. An \emph{epistemic calculus} is a (non-trivial) unital symmetric monoidal posetal category $(\V, \leq_\V, \otimes_\V, \1_\V)$. We will usually omit the indices when the category is clear. We interpret $(\V, \leq, \otimes, \1)$ by objects in $\V$ being epistemic values, morphisms being comparisons of values, and the monoidal product being fusion of values -- the monoidal unit $\1$ is interpreted as total epistemic uncertainty.
 
 \begin{remark}
     This definition is simply an abstraction of $t$-norms on the unit interval $[0,1]$, see \cite{klement-mesiar-pap_2000}. We also here restrict ourselves to symmetric structures, in order to model evidence fusion rather than updating, which we focus on in \cref{sses:updating}. 
 \end{remark}
+
+
+
 
 \subsection{Examples}
 Building on the ideas in the previous section we describe some known examples in our abstract framework. %Note that, as with $\CF$, these will all have an epistemically complete and a non-complete version, depending on whether one invokes Cromwell's rule. 
@@ -135,7 +141,7 @@ A property not satisfied by $\CF$ is \emph{epistemic conservativity}. This is a 
 
 \textbf{E5:} For all $x\in \V$, we have $x\leq x\otimes y$ for any $y \in \V$.
 
-Intuitively, given an epistemic value $x$ we can never reduce our belief in $x$ by fusing it with another epistemic value $y$. This is similar to modern digital echo-chamber belief dynamics. It is worth noting that the above form of conservativism is quite strong, and that more neuanced definitions depending on ther strength of the counter-evidence i spossible to define.  
+Intuitively, given an epistemic value $x$ we can never reduce our belief in $x$ by fusing it with another epistemic value $y$. This is similar to modern digital echo-chamber belief dynamics. It is worth noting that the above form of conservativism is quite strong, and that more nuanced definitions depending on ther strength of the counter-evidence i spossible to define.  
 
 \begin{remark}
     As noted, $\CF$ is not strongly epistemically conservative; however, it is not too far off. It \emph{is} strongly epistemically conservative on positive values, i.e. those that represent strengthened belief, and \emph{not} on negative values. This means that $\CF$ accurately models what epistemic conservativity calls ``good reasons'' to change your beliefs.
@@ -171,14 +177,14 @@ An epistemic calculus $\V$ being cancellative means that its algebraic structure
 \subsection{Inconsistencies}
 One benefit of defining systems of epistemic uncertainty calculi in this general fashion is that one can prove general relationships between properties, and study which philosophical positions that are incompatible. 
 
-One obvious result is that \textbf{E5} and \textbf{E7} cannot be satisfied at the same time. 
+%One obvious result is that \textbf{E5} and \textbf{E7} cannot be satisfied at the same time. 
 
-\begin{lemma}
-    An epistemic calculus $\V$ cannot be both streongly epistemically conservative and fallible.
-\end{lemma}
-\begin{proof}
-    Easily seen by choosing $y = x$ in the definition of \textbf{E7}.  
-\end{proof}
+%\begin{lemma}
+%    An epistemic calculus $\V$ cannot be both strongly epistemically conservative and fallible.
+%\end{lemma}
+%\begin{proof}
+%    Easily seen by choosing $y = x$ in the definition of \textbf{E7}.  
+%\end{proof}
 
 One no-go result is the following, stating that an epistemic calculus $\V$ satisfying \textbf{E2} cannot satisfy both \textbf{E4} and \textbf{E5} and \textbf{E8}. The idea is that closure and cancellativity force negative beliefs to exist, which is incompatible with strong conservativity. 
 
@@ -188,7 +194,7 @@ One no-go result is the following, stating that an epistemic calculus $\V$ satis
 \begin{proof}
     Assume for the sake of contradiction that $\V$ has all three properties, and choose objects $x,y$ such that $y \leq x$. The inner hom $[x,y]$ is the least upper bound of the set $\{z\in \V \mid x\otimes z \leq y\}$, as can be easily seen by its defining property. If $z$ is in this set, then as $\V$ is strongly conservative, we have 
     $x\otimes z \leq y \leq y\otimes z,$
-    which implies $x\leq y$ by cancellativity. Hence, $\{z\in \V \mid x\otimes z \leq y\}$ is empty, giving $[x,y] = \bot$. But, this implies that the defining formula $z\otimes x \leq y \iff z\leq [x,y] = \bot$ is only valid for $z = \bot$, which contradicts the non-triviality of $\V$. 
+    which implies $x\leq y$ by cancellativity. Hence, the set $\{z\in \V \mid x\otimes z \leq y\}$ is either empty, giving $[x,y] = \bot$ or contains only $\1$ if $x=y$. The first case implies that the defining formula $z\otimes x \leq y \iff z\leq [x,y] = \bot$ is only valid for $z = \bot$, which contradicts the non-triviality of $\V$. The second case also implies that all points in $\V$ are the same, contradicting non-triviality.
 \end{proof}
 
 Furthermore, a complete epistemic calculus satisfies \textbf{E4} if and only if it satisfies \textbf{E7}. 
@@ -237,7 +243,7 @@ Enticingly, $\PTb$ and $\IP$ satisfy all of the same axioms. This is a good indi
 
 
 
-\section{Change of frameworks}
+\section{Change of calculi}
 Usually one is limited by using a single framework for measuring and quantifying uncertainty. One of the reasons for this work was to build a conceptual foundation for how one could \emph{change} ones framework during or after measurements are being made. It is perhaps easy to think that this is simply done by applying some translation function on values, but this makes it highly opaque how this affects the whole structure of uncertainty measurements. The language used above allows us to understand how to make sure everything works out nicely, and allows us to further understand the consequences of the changes.
 
 If $\V$ and $\W$ are epistemic calculi, then a \emph{conservative change of calculi} is a lax symmetric monoidal functor $F\: \V \to \W$. In particular, $F$ satisfies 
@@ -346,9 +352,9 @@ for any $H\to H'\to H''$. In \cite{opdan_2025}, Opdan uses these ideas to model 
 Due to the general nature of our setup, we now immediately get a procedure for changing how a category uses an epistemic calculus. 
 
 \begin{theorem}[\cite{eilenberg-kelly_1966}]
-    For any conservative or liberal change of framework $F\:\V \to \W$, there is an induced functor 
+    For any conservative change of calculi $F\:\V \to \W$, there is an induced functor 
     $$F^*\:\Cat_\V \to \Cat_\W,$$
-    which assigns to a $\V$-enriched category $\C$ the $\W$-category consisting of the same objects, but whose morphism $\W$-objects are determined by the images of the morphism $\C$-objects under $F$. 
+    which assigns to a $\V$-enriched category $\C$ the $\W$-category consisting of the same objects, but whose morphism $\W$-objects are determined by the images of the morphism $\C$-objects under $F$. Similarly, a liberal change of calculi induces a functor in the opposite direction. 
 \end{theorem}
 
 This means that for any category $\C$ enriched in some epistemic calculus $\V$, it is possible to change framework in a very natural way. The semantics stay the same, but the syntax changes. 
@@ -386,7 +392,7 @@ The general shape of this idea is that ``updated comparisons = evidence - (prior
         &= \frac{p(H) \cdot p(E\mid H)}{p(K)\cdot p(E\mid K)} \\
         &= \frac{p(H\mid E)}{p(K\mid E)}
     \end{align*}
-    which is precicely the posterior odds. 
+    which is precisely the posterior odds. 
 \end{proof}
 
 One can also normalize the above formula, but this requires chosing a reference object. If $\V$ is complete, then it is natural to use $\top \in \V$. Doing this gives a categorical construction of absolute probabilities. 
